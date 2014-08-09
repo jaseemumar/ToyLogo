@@ -25,6 +25,7 @@
 #include <GL/glew.h>
 
 #include "turtle.hpp"
+#define PI 3.14159265
 
 void turtle_t::reset(void){
   pos.x=0;
@@ -82,11 +83,15 @@ void turtle_t::forward(const double _dist)
 void turtle_t::back(const double _dist)   
 { }
 
-void turtle_t::forward_move(const double _dist)
-{ }
+void turtle_t::forward_move(const double _dist){
+  pos.x+=_dist*cos(dir * PI / 180.0 );
+  pos.y+=_dist*sin(dir * PI / 180.0 );
+}
 
-void turtle_t::backward_move(const double _dist)
-{ }
+void turtle_t::backward_move(const double _dist){
+  pos.x-=_dist*cos(dir * PI / 180.0 );
+  pos.y-=_dist*sin(dir * PI / 180.0 );
+}
 
 void turtle_t::repeat(const unsigned int &_n, const turtle_com_list_t &_replist)
 { }
