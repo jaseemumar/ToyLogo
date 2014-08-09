@@ -32,20 +32,30 @@ void turtle_t::reset(void)
 void turtle_t::clear(void)
 { }
 
-void turtle_t::set_pos(const vertex_t _pos)
-{ }
+void turtle_t::set_pos(const vertex_t _pos){ 
+  pos.x=_pos.x;
+  pos.y=_pos.y;
+}
 
-void turtle_t::set_pos(const double _x, const double _y)
-{ }
+void turtle_t::set_pos(const double _x, const double _y){
+  pos.x=_x;
+  pos.y=_y;
+}
 
 void turtle_t::set_dir(const double _dir)
 { }
 
-void turtle_t::set_col(const color_t _col)
-{ }
+void turtle_t::set_col(const color_t _col){
+  col.r=_col.r;
+  col.g=_col.g;
+  col.b=_col.b;
+}
 
-void turtle_t::set_col(const double _r, const double _g, const double _b)
-{ }
+void turtle_t::set_col(const double _r, const double _g, const double _b){
+  col.r=_r;
+  col.g=_g;
+  col.b=_b; 
+}
 
 void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
 { }
@@ -53,11 +63,14 @@ void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
 void turtle_t::scale(const double _s)
 { }
 
-void turtle_t::turn_left(const double _angle)    
-{ }
+void turtle_t::turn_left(const double _angle){
+  dir=(_angle+dir)%360; 
+}
 
 void turtle_t::turn_right(const double _angle)
-{ }
+{ 
+  dir=(dir-_angle)%360; 
+}
 
 void turtle_t::forward(const double _dist)  
 { }
