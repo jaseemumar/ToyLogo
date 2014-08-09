@@ -26,8 +26,11 @@
 
 #include "turtle.hpp"
 
-void turtle_t::reset(void) 
-{ }
+void turtle_t::reset(void){
+  pos.x=0;
+  pos.y=0;
+  dir=0;
+}
 
 void turtle_t::clear(void)
 { }
@@ -42,8 +45,9 @@ void turtle_t::set_pos(const double _x, const double _y){
   pos.y=_y;
 }
 
-void turtle_t::set_dir(const double _dir)
-{ }
+void turtle_t::set_dir(const double _dir){
+  dir=_dir;
+}
 
 void turtle_t::set_col(const color_t _col){
   col.r=_col.r;
