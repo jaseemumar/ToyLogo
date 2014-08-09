@@ -71,12 +71,11 @@ void turtle_t::scale(const double _s)
 { }
 
 void turtle_t::turn_left(const double _angle){
-  dir=_angle+dir-int(_angle+dir/360)*360; 
+  dir=dir+_angle-floor((dir+_angle)/360.0)*360; 
 }
 
-void turtle_t::turn_right(const double _angle)
-{ 
-  dir=dir-_angle-int(dir-_angle/360)*360; 
+void turtle_t::turn_right(const double _angle){ 
+  dir=dir-_angle-floor((dir-_angle)/360.0)*360; 
 }
 
 void turtle_t::forward(const double _dist)  {
@@ -99,7 +98,7 @@ void turtle_t::back(const double _dist){
   double new_y=pos.y-_dist*sin(dir * PI / 180.0 );
   glColor3f(col.r, col.g, col.b);
   glBegin(GL_LINES);
-  glVertex3f(pos.x, pos.y, 0.0);
+  glVertex3f(pos.x, pos.y, 0);
   glVertex3f(new_x, new_y, 0);
   glEnd();
   pos.x=new_x;
@@ -116,8 +115,13 @@ void turtle_t::backward_move(const double _dist){
   pos.y-=_dist*sin(dir * PI / 180.0 );
 }
 
-void turtle_t::repeat(const unsigned int &_n, const turtle_com_list_t &_replist)
-{ }
+void turtle_t::repeat(const unsigned int &_n, const turtle_com_list_t &_replist){   
+  for(int i=0;i<_n;i++){
+    for(int j=0;j<_replist.size();j++){
+      exec(_replist[j]);
+    }
+  }
+}
 
 void turtle_t::exec(turtle_com_t *com)
 {
