@@ -62,26 +62,48 @@ void turtle_t::set_col(const double _r, const double _g, const double _b){
   col.b=_b; 
 }
 
-void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
-{ }
+void turtle_t::set_bgcol(const double _r, const double _g, const double _b){
+
+}
 
 void turtle_t::scale(const double _s)
 { }
 
 void turtle_t::turn_left(const double _angle){
-  dir=(_angle+dir)%360; 
+  dir=_angle+dir-int(_angle+dir/360)*360; 
 }
 
 void turtle_t::turn_right(const double _angle)
 { 
-  dir=(dir-_angle)%360; 
+  dir=dir-_angle-int(dir-_angle/360)*360; 
 }
 
-void turtle_t::forward(const double _dist)  
-{ }
+void turtle_t::forward(const double _dist)  {
 
-void turtle_t::back(const double _dist)   
-{ }
+  double new_x=pos.x+_dist*cos(dir * PI / 180.0 );
+  double new_y=pos.y+_dist*sin(dir * PI / 180.0 );
+
+  glColor3f(col.r, col.g, col.b);
+  glBegin(GL_LINES);
+  glVertex3f(pos.x, pos.y, 0.0);
+  glVertex3f(new_x, new_y, 0);
+  glEnd();
+
+  pos.x=new_x;
+  pos.y=new_y;
+}
+
+void turtle_t::back(const double _dist){ 
+  double new_x=pos.x-_dist*cos(dir * PI / 180.0 );
+  double new_y=pos.y-_dist*sin(dir * PI / 180.0 );
+  glColor3f(col.r, col.g, col.b);
+  glBegin(GL_LINES);
+  glVertex3f(pos.x, pos.y, 0.0);
+  glVertex3f(new_x, new_y, 0);
+  glEnd();
+  pos.x=new_x;
+  pos.y=new_y;
+}
 
 void turtle_t::forward_move(const double _dist){
   pos.x+=_dist*cos(dir * PI / 180.0 );
