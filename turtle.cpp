@@ -33,8 +33,9 @@ void turtle_t::reset(void){
   dir=0;
 }
 
-void turtle_t::clear(void)
-{ }
+void turtle_t::clear(void){
+  glClear(GL_COLOR_BUFFER_BIT);
+}
 
 void turtle_t::set_pos(const vertex_t _pos){ 
   pos.x=_pos.x;
@@ -63,7 +64,7 @@ void turtle_t::set_col(const double _r, const double _g, const double _b){
 }
 
 void turtle_t::set_bgcol(const double _r, const double _g, const double _b){
-
+  glClearColor(_r, _b, _g, 0.0f);
 }
 
 void turtle_t::scale(const double _s)
