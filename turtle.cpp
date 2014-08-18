@@ -67,8 +67,11 @@ void turtle_t::set_bgcol(const double _r, const double _g, const double _b){
   glClearColor(_r, _b, _g, 0.0f);
 }
 
-void turtle_t::scale(const double _s)
-{ }
+void turtle_t::scale(const double _s){
+  glLoadIdentity();
+  double t=1.0/_s;
+  glScalef(t, t, t);
+}
 
 void turtle_t::turn_left(const double _angle){
   dir=dir+_angle-floor((dir+_angle)/360.0)*360; 
